@@ -110,7 +110,6 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         guard let password = passwordTextField.text, password.characters.count > 0 else { return }
 
         Auth.auth().createUser(withEmail: email, password: password) { (user , error) in
-
             if let err = error {
                 print("Failed to create user: ", err)
                 return
@@ -153,21 +152,50 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                     }
 
                     print("Successfully saved user info into db")
+                    
+                    // from logincontroller, resetting the UI and not seeing old data
+                    guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+                    
+                    mainTabBarController.setupViewControllers()
+                    
+                    self.dismiss(animated: true, completion: nil)
                 })
             })
             
         }
     }
     
+    let alreadyHaveAccountButton: UIButton = {
+        let button = UIButton(type: UIButtonType.system)
+        
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account?  ", attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+        
+        attributedTitle.append(NSMutableAttributedString(string: "Sign In", attributes: [NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor : UIColor.rgb(red: 149, green: 204, blue: 244)]))
+        
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.addTarget(self, action: #selector(handleAlreadyHaveAccount), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    @objc func handleAlreadyHaveAccount() {
+        navigationController?.popViewController(animated: true)
+        print(123)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
         view.addSubview(plusPhotoButton)
+        view.addSubview(alreadyHaveAccountButton)
         
         plusPhotoButton.anchor(view.topAnchor, left: nil, bottom: nil, right: nil, topConstant: 40, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 140, heightConstant: 140)
         
         plusPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        alreadyHaveAccountButton.anchor(nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 50)
         
         setupInputFields()
 
