@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 
 
-
 private let reuseIdentifier = "Cell"
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -61,19 +60,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     fileprivate func fetchPosts() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        
-        
-        
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            guard let userDictionary = snapshot.value as? [String: Any] else { return }
-            let user = User(uid: uid, dictionary: userDictionary)
-            
+        Database.fetchUserWithUid(uid: uid) { (user) in
             self.fetchPostsWithUser(user: user)
-            
-        }) { (err) in
-            print("Failed to fetch posts: ", err)
         }
+        
+        
         
     }
     
