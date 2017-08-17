@@ -19,6 +19,7 @@
 		2406B76E1F34619A001BDC94 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406B76D1F34619A001BDC94 /* UserProfileHeader.swift */; };
 		243642501F44EA1A00DB2208 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436424F1F44EA1A00DB2208 /* User.swift */; };
 		243642521F45E7FC00DB2208 /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243642511F45E7FC00DB2208 /* FirebaseUtils.swift */; };
+		243642571F45E92500DB2208 /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243642561F45E92500DB2208 /* UserSearchController.swift */; };
 		243AB13A1F3C53A3009316F2 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243AB1391F3C53A3009316F2 /* PhotoSelectorController.swift */; };
 		244FB67E1F369BA20025F143 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FB67D1F369BA20025F143 /* LoginController.swift */; };
 		246B03EB1F41798800181833 /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B03EA1F41798800181833 /* PhotoSelectorHeader.swift */; };
@@ -28,6 +29,7 @@
 		246B03F41F4402BB00181833 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B03F31F4402BA00181833 /* CustomImageView.swift */; };
 		24AB3F891F445553003B53D1 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB3F881F445553003B53D1 /* HomeController.swift */; };
 		24AB3F8B1F44564E003B53D1 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB3F8A1F44564E003B53D1 /* HomePostCell.swift */; };
+		24DBB2831F45ECC4007ACAB1 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBB2821F45ECC4007ACAB1 /* UserSearchCell.swift */; };
 		24E420171F41510A00E11DD0 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E420161F41510A00E11DD0 /* PhotoSelectorCell.swift */; };
 		369033436359B55164AB091C /* Pods_Instagram_Voong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1D5AFF89B9059C6D72C6D3 /* Pods_Instagram_Voong.framework */; };
 /* End PBXBuildFile section */
@@ -47,6 +49,7 @@
 		2406B76D1F34619A001BDC94 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		2436424F1F44EA1A00DB2208 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		243642511F45E7FC00DB2208 /* FirebaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
+		243642561F45E92500DB2208 /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		243AB1391F3C53A3009316F2 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		244FB67D1F369BA20025F143 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		246B03EA1F41798800181833 /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
@@ -56,6 +59,7 @@
 		246B03F31F4402BA00181833 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		24AB3F881F445553003B53D1 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		24AB3F8A1F44564E003B53D1 /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
+		24DBB2821F45ECC4007ACAB1 /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		24E420161F41510A00E11DD0 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		2B1D5AFF89B9059C6D72C6D3 /* Pods_Instagram_Voong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram_Voong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DA930B27F6A39FF9805FB70 /* Pods-Instagram Voong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram Voong.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram Voong/Pods-Instagram Voong.release.xcconfig"; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 		2406B74F1F2EE825001BDC94 /* Instagram Voong */ = {
 			isa = PBXGroup;
 			children = (
+				243642531F45E8E100DB2208 /* Search */,
 				24AB3F871F445533003B53D1 /* Home */,
 				246B03EE1F43E91700181833 /* Models */,
 				243AB1381F3C537F009316F2 /* AddPhoto */,
@@ -130,6 +135,15 @@
 				246B03F11F43F1B000181833 /* UserProfilePhotoCell.swift */,
 			);
 			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		243642531F45E8E100DB2208 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				243642561F45E92500DB2208 /* UserSearchController.swift */,
+				24DBB2821F45ECC4007ACAB1 /* UserSearchCell.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		243AB1381F3C537F009316F2 /* AddPhoto */ = {
@@ -324,12 +338,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24DBB2831F45ECC4007ACAB1 /* UserSearchCell.swift in Sources */,
 				243642521F45E7FC00DB2208 /* FirebaseUtils.swift in Sources */,
 				246B03ED1F4231C500181833 /* SharePhotoController.swift in Sources */,
 				2406B7531F2EE825001BDC94 /* SignUpController.swift in Sources */,
 				24E420171F41510A00E11DD0 /* PhotoSelectorCell.swift in Sources */,
 				246B03F41F4402BB00181833 /* CustomImageView.swift in Sources */,
 				246B03F01F43E93700181833 /* Post.swift in Sources */,
+				243642571F45E92500DB2208 /* UserSearchController.swift in Sources */,
 				2406B7511F2EE825001BDC94 /* AppDelegate.swift in Sources */,
 				246B03F21F43F1B000181833 /* UserProfilePhotoCell.swift in Sources */,
 				243642501F44EA1A00DB2208 /* User.swift in Sources */,
