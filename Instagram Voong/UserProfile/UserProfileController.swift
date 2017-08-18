@@ -15,12 +15,13 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let uid = Auth.auth().currentUser?.uid else { return }
 
         collectionView?.backgroundColor = .white
         
         navigationItem.title = Auth.auth().currentUser?.uid
         
-        fetchUser()
+        fetchUser(uid: uid)
         
         collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
         
@@ -131,8 +132,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     
     var user: User?
-    fileprivate func fetchUser () {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+    fileprivate func fetchUser (uid: String) {
+        
         
         Database.fetchUserWithUid(uid: uid) { (user) in
             self.user = user
