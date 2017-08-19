@@ -13,9 +13,15 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupCaptureSession()
         setupHUD()
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     
     let captureButton: UIButton = {
         let button = UIButton(type: UIButtonType.system)
@@ -64,9 +70,11 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         
         let previewImage = UIImage(data: imageData!)
         
-        let previewImageView = UIImageView(image: previewImage)
-        view.addSubview(previewImageView)
-        previewImageView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        let containerView = PreviewPhotoContainerView()
+        containerView.previewImageView.image = previewImage
+        
+        view.addSubview(containerView)
+        containerView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
         print("Finish processing photo sample buffer...")
     }
