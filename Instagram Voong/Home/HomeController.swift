@@ -17,20 +17,41 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     let cellId = "cellId"
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: SharePhotoController.updateFeedNotificationName, object: nil)
+
         // Register cell classes
         self.collectionView!.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
 
         // Do any additional setup after loading the view.
         collectionView?.backgroundColor = .white
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView?.refreshControl = refreshControl
+        
         setupNavigationItems()
         fetchPosts()
         fetchFollowingUserIds()
     }
+    
+    @objc func handleUpdateFeed() {
+        handleRefresh()
+    }
 
+    @objc func handleRefresh() {
+        print("Handling Refresh..")
+        
+        posts.removeAll()
+        
+        fetchAllPosts()
+    }
+    
+    fileprivate func fetchAllPosts() {
+        fetchPosts()
+        fetchFollowingUserIds()
+    }
+    
     // Instagram title at top
     func setupNavigationItems() {
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
@@ -94,6 +115,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         ref.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach({ (key, value) in
+                
+                // Stop the spinner
+                self.collectionView?.refreshControl?.endRefreshing()
                 
                 guard let dictionary = value as? [String: Any] else { return }
                 let post = Post(user: user, dictionary: dictionary)

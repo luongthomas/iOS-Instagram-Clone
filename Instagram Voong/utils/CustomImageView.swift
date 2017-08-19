@@ -17,6 +17,9 @@ class CustomImageView: UIImageView {
     func loadImage(urlString: String) {
         lastURLUsedToLoadImage = urlString
         
+        // Fixes flickering (happens after refreshing image in home)
+        self.image = nil
+        
         // Using cache to reduce calls
         if let cachedImage = imageCache[urlString] {
             self.image = cachedImage

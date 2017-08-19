@@ -76,12 +76,13 @@ class SharePhotoController: UIViewController {
             }
             
             guard let imageUrl = metadata?.downloadURL()?.absoluteString else { return }
-            
             print("Successfully uploaded post image: ",  imageUrl)
-            
             self.saveToDatabaseWithImageUrl(imageUrl: imageUrl)
         }
     }
+    
+    // static allows it to be accessed anywhere
+    static let updateFeedNotificationName = NSNotification.Name(rawValue: "UpdateFeed")
     
     // Save image url to database
     fileprivate func saveToDatabaseWithImageUrl(imageUrl: String) {
@@ -104,7 +105,10 @@ class SharePhotoController: UIViewController {
             
             print("Successfully uploaded image to DB")
             self.dismiss(animated: true, completion: nil)
+            
+            NotificationCenter.default.post(name: SharePhotoController.updateFeedNotificationName, object: nil)
         }
+        
     }
     
     override var prefersStatusBarHidden: Bool {
