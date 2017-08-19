@@ -35,7 +35,8 @@ class HomePostCell: UICollectionViewCell {
         // separating the timestamp and the comments
         attributedText.append(NSMutableAttributedString(string: "\n\n", attributes: [NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 4)]))
         
-        attributedText.append(NSMutableAttributedString(string: "1 Week ago", attributes: [NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.gray]))
+        let timeAgoDisplay = post.creationDate.timeAgoDisplay()
+        attributedText.append(NSMutableAttributedString(string: timeAgoDisplay, attributes: [NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.gray]))
         
         self.captionLabel.attributedText = attributedText
     }

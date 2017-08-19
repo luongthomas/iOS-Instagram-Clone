@@ -28,6 +28,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.backgroundColor = .white
         setupNavigationItems()
         fetchPosts()
+        fetchFollowingUserIds()
     }
 
     // Instagram title at top
@@ -64,10 +65,28 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             self.fetchPostsWithUser(user: user)
         }
         
-        
-        
     }
     
+    // Gets a dictionary of the users the current user is following.  Then we fetch posts of each user
+    fileprivate func fetchFollowingUserIds() {
+        guard let currentUserUid = Auth.auth().currentUser?.uid else { return }
+        let ref = Database.database().reference().child("following").child(currentUserUid)
+        ref.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+            
+            guard let userIdsDictionary = snapshot.value as? [String: Any] else { return }
+            userIdsDictionary.forEach({ (key, value) in
+                Database.fetchUserWithUid(uid: key, completion: { (user) in
+                    self.fetchPostsWithUser(user: user)
+                })
+            })
+            
+            
+        }) { (err) in
+            print("Failed to get current user's following people", err)
+            return
+            
+        }
+    }
     
     fileprivate func fetchPostsWithUser(user: User) {
         let ref = Database.database().reference().child("posts").child(user.uid)
@@ -79,6 +98,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 guard let dictionary = value as? [String: Any] else { return }
                 let post = Post(user: user, dictionary: dictionary)
                 self.posts.append(post)
+            })
+            
+            // Sort posts by the latest post first
+            self.posts.sort(by: { (post1, post2) -> Bool in
+                return post1.creationDate.compare(post2.creationDate) == .orderedDescending
             })
             
             self.collectionView?.reloadData()
