@@ -55,6 +55,14 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     // Instagram title at top
     func setupNavigationItems() {
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "camera3").withRenderingMode(UIImageRenderingMode.alwaysOriginal), style: UIBarButtonItemStyle.plain, target: self, action: #selector(handleCamera))
+    }
+    
+    @objc func handleCamera() {
+        print("Showing Camera")
+        
+        let cameraController = CameraController()
+        present(cameraController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
