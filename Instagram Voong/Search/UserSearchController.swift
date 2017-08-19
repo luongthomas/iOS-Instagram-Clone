@@ -23,13 +23,17 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         sb.delegate = self
         return sb
     }()
-
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        
 
         // Register cell classes
         self.collectionView!.register(UserSearchCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -39,10 +43,12 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         let navBar = navigationController?.navigationBar
         navBar?.addSubview(searchBar)
         
+        
         searchBar.anchor(navBar?.topAnchor, left: navBar?.leftAnchor, bottom: navBar?.bottomAnchor, right: navBar?.rightAnchor, topConstant: 0, leftConstant: 8, bottomConstant: 0, rightConstant: 8, widthConstant: 0, heightConstant: 0)
         
+        // Scrolling behavior.
         collectionView?.alwaysBounceVertical = true
-        
+        collectionView?.keyboardDismissMode = .onDrag
         fetchUsers()
     }
 
@@ -53,6 +59,11 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         ref.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach({ (key, value) in
+                if key == Auth.auth().currentUser?.uid {
+                    print("Found Myself, omit from list")
+                    return
+                }
+                
                 guard let userDictionary = value as? [String: Any] else { return }
                 let user = User(uid: key, dictionary: userDictionary)
                 self.users.append(user)
@@ -66,6 +77,28 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         }) { (err) in
             print("Failed to fetch users", err)
         }
+    }
+    
+    // handles when searched user gets clicked.  shows profile controller
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        searchBar.isHidden = true
+        
+        // Dismissing keyboard when moving views
+        searchBar.resignFirstResponder()
+        
+        let user = filteredUsers[indexPath.item]
+        print(user.username)
+        
+        let layout = UICollectionViewFlowLayout()
+        let userProfileController = UserProfileController(collectionViewLayout: layout)
+        
+        userProfileController.userId = user.uid
+        navigationController?.pushViewController(userProfileController, animated: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchBar.isHidden = false
     }
     
     

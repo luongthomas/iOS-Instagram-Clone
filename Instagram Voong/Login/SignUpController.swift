@@ -165,6 +165,8 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         }
     }
     
+    
+    
     let alreadyHaveAccountButton: UIButton = {
         let button = UIButton(type: UIButtonType.system)
         

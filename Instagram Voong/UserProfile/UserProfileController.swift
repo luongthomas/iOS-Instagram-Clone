@@ -12,30 +12,25 @@ import Firebase
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     let cellId = "cellId"
+    var userId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let uid = Auth.auth().currentUser?.uid else { return }
 
         collectionView?.backgroundColor = .white
-        
-        navigationItem.title = Auth.auth().currentUser?.uid
-        
-        fetchUser(uid: uid)
         
         collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
         
         // Important after declaring numberOfItems and cellForItemAt for collectionViewCell
         collectionView?.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
         
+        fetchUser()
         setupLogoutButton()
-        fetchOrderedPosts()
     }
     
     var posts = [Post]()
-    
     fileprivate func fetchOrderedPosts() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let uid = user?.uid else { return }
         let ref = Database.database().reference().child("posts").child(uid)
         
         // get newest post
@@ -132,8 +127,10 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     
     var user: User?
-    fileprivate func fetchUser (uid: String) {
+    fileprivate func fetchUser () {
         
+        // Shortcut to unwrap optionals.  Search controller will pass in userId
+        let uid = userId ?? Auth.auth().currentUser?.uid ?? ""
         
         Database.fetchUserWithUid(uid: uid) { (user) in
             self.user = user
@@ -141,6 +138,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
 
             // executes size and rendering of header again, use this time to feed it object
             self.collectionView?.reloadData()
+            
+            self.fetchOrderedPosts()
         }
     }
 }
