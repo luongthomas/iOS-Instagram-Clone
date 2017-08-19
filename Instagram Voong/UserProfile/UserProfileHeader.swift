@@ -16,7 +16,84 @@ class UserProfileHeader: UICollectionViewCell {
             guard let profileImageUrl = user?.profileImageUrl else { return }
             profileImageView.loadImage(urlString: profileImageUrl)
             usernameLabel.text = user?.username
+            setupEditFollowButton()
         }
+    }
+    
+    fileprivate func setupEditFollowButton() {
+        guard let currentLoggedInUserId = Auth.auth().currentUser?.uid else { return }
+        guard let userId = user?.uid else { return }
+        
+        if currentLoggedInUserId == userId {
+            // edit profile
+            
+        } else {
+            
+            // Check if following
+        Database.database().reference().child("following").child(currentLoggedInUserId).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+                if let isFollowing = snapshot.value as? Int, isFollowing == 1 {
+                    self.editProfileFollowButton.setTitle("Unfollow", for: .normal)
+                } else {
+                    self.setupFollowStyle()
+                }
+            
+            }, withCancel: { (err) in
+                print("Failed to verify if following", err)
+            })
+        }
+        
+        editProfileFollowButton.setTitle("Follow", for: UIControlState.normal)
+    }
+    
+    // follow user and append node to following tree
+    @objc func handleEditProfileFollow() {
+        print("handle edit profile follow")
+        
+        guard let currentLoggedInUserId = Auth.auth().currentUser?.uid else { return }
+        
+        // User who's profile we are looking at
+        guard let userId = user?.uid else { return }
+        
+        // Unfollow
+        if editProfileFollowButton.titleLabel?.text == "Unfollow" {
+        Database.database().reference().child("following").child(currentLoggedInUserId).child(userId).removeValue(completionBlock: { (err, ref) in
+                if let err = err {
+                    print("Failed to unfollow user", err)
+                    return
+                }
+            
+                self.setupFollowStyle()
+            })
+        } else {
+            // follow
+            // Firebase structure-> following-> currentuserid -> followedUserUID
+            let ref = Database.database().reference().child("following").child(currentLoggedInUserId)
+            
+            
+            // value we want to store the new node with
+            let values = [userId: 1]
+            
+            // updating the tree after we added the new node
+            ref.updateChildValues(values) { (err, ref) in
+                if let err = err {
+                    print("Failed to follow user: ", err)
+                    return
+                }
+                print("Successfully followed user ", self.user?.username ?? "")
+                self.editProfileFollowButton.setTitle("Unfollow", for: UIControlState.normal)
+                self.editProfileFollowButton.backgroundColor = .white
+                self.editProfileFollowButton.setTitleColor(.black, for: UIControlState.normal)
+            }
+        }
+    }
+    
+    fileprivate func setupFollowStyle() {
+        print("Successfully unfollowed user", self.user?.username)
+        self.editProfileFollowButton.setTitle("Follow", for: .normal)
+        self.editProfileFollowButton.setTitleColor(.white, for: UIControlState.normal)
+        self.editProfileFollowButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+        self.editProfileFollowButton.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
     }
     
     let profileImageView: CustomImageView = {
@@ -90,7 +167,8 @@ class UserProfileHeader: UICollectionViewCell {
         return label
     }()
     
-    let editProfileButton: UIButton = {
+    // button doesn't respond to press actions so change to lazy var
+    lazy var editProfileFollowButton: UIButton = {
         let button = UIButton()
         button.setTitle("Edit Profile", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -98,8 +176,10 @@ class UserProfileHeader: UICollectionViewCell {
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 3
+        button.addTarget(self, action: #selector(handleEditProfileFollow), for: .touchUpInside)
         return button
     }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -116,8 +196,8 @@ class UserProfileHeader: UICollectionViewCell {
         
         setupUserStatsView()
         
-        addSubview(editProfileButton)
-        editProfileButton.anchor(postsLabel.bottomAnchor, left: postsLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, topConstant: 2, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 34)
+        addSubview(editProfileFollowButton)
+        editProfileFollowButton.anchor(postsLabel.bottomAnchor, left: postsLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, topConstant: 2, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 34)
     }
     
     fileprivate func setupBottomToolbar() {
