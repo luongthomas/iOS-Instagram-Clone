@@ -12,7 +12,15 @@ import Firebase
 
 private let reuseIdentifier = "Cell"
 
-class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HomePostCellDelegate {
+    func didTapComment(post: Post) {
+        print("Message coming from HomeController")
+        print(post.caption)
+        let layout = UICollectionViewFlowLayout()
+        let commentsController = CommentsController(collectionViewLayout: layout)
+        navigationController?.pushViewController(commentsController, animated: true)
+    }
+    
     
     let cellId = "cellId"
     override func viewDidLoad() {
@@ -169,6 +177,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
+        
+        cell.delegate = self
     
         // Configure the cell
         cell.post = posts[indexPath.item]

@@ -8,8 +8,15 @@
 
 import UIKit
 
+
+protocol HomePostCellDelegate {
+    func didTapComment(post: Post) 
+}
+
 class HomePostCell: UICollectionViewCell {
 
+    var delegate: HomePostCellDelegate?
+    
     var post: Post? {
         didSet {
             guard let postImageUrl = post?.imageUrl else { return }
@@ -84,10 +91,11 @@ class HomePostCell: UICollectionViewCell {
         return button
     }()
     
-    let commentButton: UIButton = {
+    lazy var commentButton: UIButton = {
         let button = UIButton(type: UIButtonType.system)
         button.setImage(#imageLiteral(resourceName: "comment").withRenderingMode(UIImageRenderingMode.alwaysOriginal), for: UIControlState.normal)
         button.setTitleColor(.black, for: UIControlState.normal)
+        button.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
         return button
     }()
     
@@ -133,6 +141,11 @@ class HomePostCell: UICollectionViewCell {
         captionLabel.anchor(likeButton.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 8, bottomConstant: 0, rightConstant: 8, widthConstant: 0, heightConstant: 0)
     }
     
+    @objc func handleComment() {
+        print("Trying to show comments")
+        guard let post = post else { return }
+        delegate?.didTapComment(post: post)
+    }
     
     fileprivate func setupActionButtons() {
         let stackView = UIStackView(arrangedSubviews: [likeButton, commentButton, sendButton])
