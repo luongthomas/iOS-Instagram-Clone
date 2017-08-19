@@ -31,6 +31,8 @@
 		246B03F41F4402BB00181833 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B03F31F4402BA00181833 /* CustomImageView.swift */; };
 		24AB3F891F445553003B53D1 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB3F881F445553003B53D1 /* HomeController.swift */; };
 		24AB3F8B1F44564E003B53D1 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB3F8A1F44564E003B53D1 /* HomePostCell.swift */; };
+		24BA9F111F48ED0200AF60D0 /* CustomAnimationPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BA9F101F48ED0200AF60D0 /* CustomAnimationPresentor.swift */; };
+		24BA9F131F48F0B600AF60D0 /* CustomAnimationDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BA9F121F48F0B600AF60D0 /* CustomAnimationDismisser.swift */; };
 		24DBB2831F45ECC4007ACAB1 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBB2821F45ECC4007ACAB1 /* UserSearchCell.swift */; };
 		24E420171F41510A00E11DD0 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E420161F41510A00E11DD0 /* PhotoSelectorCell.swift */; };
 		369033436359B55164AB091C /* Pods_Instagram_Voong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1D5AFF89B9059C6D72C6D3 /* Pods_Instagram_Voong.framework */; };
@@ -63,6 +65,8 @@
 		246B03F31F4402BA00181833 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		24AB3F881F445553003B53D1 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		24AB3F8A1F44564E003B53D1 /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
+		24BA9F101F48ED0200AF60D0 /* CustomAnimationPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationPresentor.swift; sourceTree = "<group>"; };
+		24BA9F121F48F0B600AF60D0 /* CustomAnimationDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationDismisser.swift; sourceTree = "<group>"; };
 		24DBB2821F45ECC4007ACAB1 /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		24E420161F41510A00E11DD0 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		2B1D5AFF89B9059C6D72C6D3 /* Pods_Instagram_Voong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram_Voong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +171,8 @@
 			children = (
 				24459DEA1F48BE210023561A /* CameraController.swift */,
 				24459DEC1F48D2700023561A /* PreviewPhotoContainerView.swift */,
+				24BA9F101F48ED0200AF60D0 /* CustomAnimationPresentor.swift */,
+				24BA9F121F48F0B600AF60D0 /* CustomAnimationDismisser.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -361,11 +367,13 @@
 				246B03F01F43E93700181833 /* Post.swift in Sources */,
 				243642571F45E92500DB2208 /* UserSearchController.swift in Sources */,
 				2406B7511F2EE825001BDC94 /* AppDelegate.swift in Sources */,
+				24BA9F111F48ED0200AF60D0 /* CustomAnimationPresentor.swift in Sources */,
 				24459DEB1F48BE210023561A /* CameraController.swift in Sources */,
 				246B03F21F43F1B000181833 /* UserProfilePhotoCell.swift in Sources */,
 				243642501F44EA1A00DB2208 /* User.swift in Sources */,
 				2406B7691F332F29001BDC94 /* MainTabBarController.swift in Sources */,
 				2406B76E1F34619A001BDC94 /* UserProfileHeader.swift in Sources */,
+				24BA9F131F48F0B600AF60D0 /* CustomAnimationDismisser.swift in Sources */,
 				2406B76B1F33311D001BDC94 /* UserProfileController.swift in Sources */,
 				2406B7641F302C6E001BDC94 /* extensions.swift in Sources */,
 				24459DED1F48D2700023561A /* PreviewPhotoContainerView.swift in Sources */,
