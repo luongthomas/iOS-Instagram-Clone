@@ -22,6 +22,7 @@
 		243642571F45E92500DB2208 /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243642561F45E92500DB2208 /* UserSearchController.swift */; };
 		243AB13A1F3C53A3009316F2 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243AB1391F3C53A3009316F2 /* PhotoSelectorController.swift */; };
 		24459DEB1F48BE210023561A /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24459DEA1F48BE210023561A /* CameraController.swift */; };
+		24459DED1F48D2700023561A /* PreviewPhotoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24459DEC1F48D2700023561A /* PreviewPhotoContainerView.swift */; };
 		244FB67E1F369BA20025F143 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FB67D1F369BA20025F143 /* LoginController.swift */; };
 		246B03EB1F41798800181833 /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B03EA1F41798800181833 /* PhotoSelectorHeader.swift */; };
 		246B03ED1F4231C500181833 /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B03EC1F4231C500181833 /* SharePhotoController.swift */; };
@@ -53,6 +54,7 @@
 		243642561F45E92500DB2208 /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		243AB1391F3C53A3009316F2 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		24459DEA1F48BE210023561A /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		24459DEC1F48D2700023561A /* PreviewPhotoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoContainerView.swift; sourceTree = "<group>"; };
 		244FB67D1F369BA20025F143 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		246B03EA1F41798800181833 /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
 		246B03EC1F4231C500181833 /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				24459DEA1F48BE210023561A /* CameraController.swift */,
+				24459DEC1F48D2700023561A /* PreviewPhotoContainerView.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				2406B76E1F34619A001BDC94 /* UserProfileHeader.swift in Sources */,
 				2406B76B1F33311D001BDC94 /* UserProfileController.swift in Sources */,
 				2406B7641F302C6E001BDC94 /* extensions.swift in Sources */,
+				24459DED1F48D2700023561A /* PreviewPhotoContainerView.swift in Sources */,
 				244FB67E1F369BA20025F143 /* LoginController.swift in Sources */,
 				24AB3F8B1F44564E003B53D1 /* HomePostCell.swift in Sources */,
 				246B03EB1F41798800181833 /* PhotoSelectorHeader.swift in Sources */,
