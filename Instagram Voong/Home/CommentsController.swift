@@ -23,8 +23,62 @@ class CommentsController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
         collectionView?.backgroundColor = .green
+        
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    var containerView: UIView = {
+        let containerView = UIView()
+        containerView.backgroundColor = .white
+        containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
+        
+        let submitButton = UIButton(type: UIButtonType.system)
+        submitButton.setTitle("Submit", for: UIControlState.normal)
+        submitButton.setTitleColor(.black, for: UIControlState.normal)
+        submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        submitButton.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
+        containerView.addSubview(submitButton)
+        submitButton.anchor(containerView.topAnchor, left: nil, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 12, widthConstant: 50, heightConstant: 0)
+        
+        
+        let textField = UITextField()
+        textField.placeholder = "Enter Comment"
+        containerView.addSubview(textField)
+        textField.anchor(containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: submitButton.leftAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        return containerView
+    }()
+    
+    
+    @objc func handleSubmit() {
+        print("Handling Submit...")
+    }
+    
+    
+    // all views have this inputAccessoryView that allow you to type in
+    // important to return a variable that holds a reference to the object
+    // Benefits of using inputAccessoryView as a textfield holder, is that
+    //  UIKit will handle the positioning of that view for us
+    override var inputAccessoryView: UIView? {
+        get {
+            return containerView
+        }
+    }
+    
+    // allows the inputAccessoryView to appear first
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
