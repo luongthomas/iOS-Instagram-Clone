@@ -18,6 +18,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         print(post.caption)
         let layout = UICollectionViewFlowLayout()
         let commentsController = CommentsController(collectionViewLayout: layout)
+        commentsController.post = post
         navigationController?.pushViewController(commentsController, animated: true)
     }
     
@@ -136,7 +137,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 self.collectionView?.refreshControl?.endRefreshing()
                 
                 guard let dictionary = value as? [String: Any] else { return }
-                let post = Post(user: user, dictionary: dictionary)
+                var post = Post(user: user, dictionary: dictionary)
+                
+                // post needs to be a var to have its members changed
+                post.id = key
+                
                 self.posts.append(post)
             })
             
