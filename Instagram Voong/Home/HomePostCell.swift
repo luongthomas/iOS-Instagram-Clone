@@ -50,7 +50,6 @@ class HomePostCell: UICollectionViewCell {
 
     let userProfileImageView: CustomImageView = {
         let iv = CustomImageView()
-        iv.backgroundColor = .blue
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         return iv
@@ -127,7 +126,7 @@ class HomePostCell: UICollectionViewCell {
         photoImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
         
         
-        userProfileImageView.anchor(topAnchor, left: leftAnchor, bottom: nil, right: nil, topConstant: 8, leftConstant: 8, bottomConstant: 0, rightConstant: 0, widthConstant: 40, heightConstant: 40)
+        userProfileImageView.anchor(topAnchor, left: leftAnchor, bottom: photoImageView.topAnchor, right: nil, topConstant: 8, leftConstant: 8, bottomConstant: 8, rightConstant: 0, widthConstant: 40, heightConstant: 40)
         userProfileImageView.layer.cornerRadius = 40 / 2
         
         

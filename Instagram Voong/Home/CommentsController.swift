@@ -11,22 +11,30 @@ import Firebase
 
 private let reuseIdentifier = "Cell"
 
-class CommentsController: UICollectionViewController {
+class CommentsController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var post: Post?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // so the view will only show enough space for the comments
+        // -50 is for the space the comment text field is using
+        collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: -50, right: 0)
+        // adjust the scroll bar to accomodate for the text field space
+        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: -50, right: 0)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        collectionView?.backgroundColor = .red
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(CommentCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
-        collectionView?.backgroundColor = .green
+        collectionView?.backgroundColor = .white
         
+        fetchComments()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -98,6 +106,26 @@ class CommentsController: UICollectionViewController {
         return true
     }
     
+    var comments = [Comment]()
+    fileprivate func fetchComments() {
+        guard let postId = post?.id else { return }
+        let ref = Database.database().reference().child("comments").child(postId)
+        ref.observe(DataEventType.childAdded, with: { (snapshot) in
+            
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            
+            let comment = Comment(dictionary: dictionary)
+            print(comment.text, comment.uid)
+            
+            self.comments.append(comment)
+            self.collectionView?.reloadData()
+            
+        }) { (err) in
+            print("failed to observe comments")
+        }
+        
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -118,21 +146,27 @@ class CommentsController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return comments.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CommentCell
     
         // Configure the cell
+        // Remember to cast cell as CommentCell forcefully
+        cell.comment = self.comments[indexPath.item]
     
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 50)
     }
 
     // MARK: UICollectionViewDelegate

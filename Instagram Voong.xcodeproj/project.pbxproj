@@ -17,6 +17,7 @@
 		2406B7691F332F29001BDC94 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406B7681F332F29001BDC94 /* MainTabBarController.swift */; };
 		2406B76B1F33311D001BDC94 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406B76A1F33311D001BDC94 /* UserProfileController.swift */; };
 		2406B76E1F34619A001BDC94 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406B76D1F34619A001BDC94 /* UserProfileHeader.swift */; };
+		2423C6EA1F492FF10049A8B3 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C6E91F492FF10049A8B3 /* Comment.swift */; };
 		243642501F44EA1A00DB2208 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436424F1F44EA1A00DB2208 /* User.swift */; };
 		243642521F45E7FC00DB2208 /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243642511F45E7FC00DB2208 /* FirebaseUtils.swift */; };
 		243642571F45E92500DB2208 /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243642561F45E92500DB2208 /* UserSearchController.swift */; };
@@ -34,6 +35,7 @@
 		24BA9F111F48ED0200AF60D0 /* CustomAnimationPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BA9F101F48ED0200AF60D0 /* CustomAnimationPresentor.swift */; };
 		24BA9F131F48F0B600AF60D0 /* CustomAnimationDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BA9F121F48F0B600AF60D0 /* CustomAnimationDismisser.swift */; };
 		24BA9F151F48F4FD00AF60D0 /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BA9F141F48F4FD00AF60D0 /* CommentsController.swift */; };
+		24BA9F171F492D3400AF60D0 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BA9F161F492D3400AF60D0 /* CommentCell.swift */; };
 		24DBB2831F45ECC4007ACAB1 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBB2821F45ECC4007ACAB1 /* UserSearchCell.swift */; };
 		24E420171F41510A00E11DD0 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E420161F41510A00E11DD0 /* PhotoSelectorCell.swift */; };
 		369033436359B55164AB091C /* Pods_Instagram_Voong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1D5AFF89B9059C6D72C6D3 /* Pods_Instagram_Voong.framework */; };
@@ -52,6 +54,7 @@
 		2406B7681F332F29001BDC94 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2406B76A1F33311D001BDC94 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		2406B76D1F34619A001BDC94 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
+		2423C6E91F492FF10049A8B3 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		2436424F1F44EA1A00DB2208 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		243642511F45E7FC00DB2208 /* FirebaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
 		243642561F45E92500DB2208 /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
@@ -69,6 +72,7 @@
 		24BA9F101F48ED0200AF60D0 /* CustomAnimationPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationPresentor.swift; sourceTree = "<group>"; };
 		24BA9F121F48F0B600AF60D0 /* CustomAnimationDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationDismisser.swift; sourceTree = "<group>"; };
 		24BA9F141F48F4FD00AF60D0 /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
+		24BA9F161F492D3400AF60D0 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		24DBB2821F45ECC4007ACAB1 /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		24E420161F41510A00E11DD0 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		2B1D5AFF89B9059C6D72C6D3 /* Pods_Instagram_Voong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram_Voong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +197,7 @@
 			children = (
 				246B03EF1F43E93700181833 /* Post.swift */,
 				2436424F1F44EA1A00DB2208 /* User.swift */,
+				2423C6E91F492FF10049A8B3 /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,6 +208,7 @@
 				24AB3F881F445553003B53D1 /* HomeController.swift */,
 				24AB3F8A1F44564E003B53D1 /* HomePostCell.swift */,
 				24BA9F141F48F4FD00AF60D0 /* CommentsController.swift */,
+				24BA9F161F492D3400AF60D0 /* CommentCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -374,6 +380,7 @@
 				24459DEB1F48BE210023561A /* CameraController.swift in Sources */,
 				246B03F21F43F1B000181833 /* UserProfilePhotoCell.swift in Sources */,
 				243642501F44EA1A00DB2208 /* User.swift in Sources */,
+				24BA9F171F492D3400AF60D0 /* CommentCell.swift in Sources */,
 				2406B7691F332F29001BDC94 /* MainTabBarController.swift in Sources */,
 				2406B76E1F34619A001BDC94 /* UserProfileHeader.swift in Sources */,
 				24BA9F131F48F0B600AF60D0 /* CustomAnimationDismisser.swift in Sources */,
@@ -385,6 +392,7 @@
 				246B03EB1F41798800181833 /* PhotoSelectorHeader.swift in Sources */,
 				24BA9F151F48F4FD00AF60D0 /* CommentsController.swift in Sources */,
 				243AB13A1F3C53A3009316F2 /* PhotoSelectorController.swift in Sources */,
+				2423C6EA1F492FF10049A8B3 /* Comment.swift in Sources */,
 				24AB3F891F445553003B53D1 /* HomeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
